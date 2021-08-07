@@ -24,6 +24,9 @@ nav ul {
 }
 
 /* Search */
+.search-wrap {
+  height: 100vh;
+}
 .pagina {
   font-size: 15px !important;
 }

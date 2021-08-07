@@ -1,86 +1,83 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import Global from '../Api';
 import axios from 'axios';
+const {useState} = React;
 
-class Search extends Component {
+const Search = () => {
 
-    url = Global.url;
+    const url = Global.url;
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            input: '',
-            pokes: [],
-            status: null
-        }
-    }
+    const [search, setSearch] = useState('');
+    const [pokemon, setPokemon] = useState();
 
-    componentDidMount() {
-        this.searchPoke();
-    };
-    
-
-    changeInput = (event) => {
-        this.setState({
-            input: event.target.value,
-            pokes: this.state.pokes
-        });
+    const changeInput = (event) => {
+        setSearch(event.target.value);
     }
 
 
-    searchPoke = () => {
-        console.log('Funcionando el metodo');
-        axios.get(this.url + 'pokemon/')
+    const searchPoke = (e) => {
+        e.preventDefault();
+        axios.get(url+'pokemon/'+search)
             .then(res => {
-                this.setState({
-                    input: '',
-                    pokes: res.data,
-                    status: 'success'
-                });
-                console.log(res.data);
+                setPokemon(res.data);
             })
             .catch(error => {
                 console.log(error);
             })
     }
 
-    render() {
         return (
-            <div className="d-flex justify-content-around align-items-center">
-                {/* Paginación */}
-                <div className="paginas">
-                    <p>Pag 1 de 20</p>
-                    <button className="btn btn-primary pagina">
-                        <FontAwesomeIcon icon={faChevronCircleLeft} />
-                    </button>
-                    <span>  </span>
-                    <button className="btn btn-primary pagina">
-                        <FontAwesomeIcon icon={faChevronCircleRight}/>
-                    </button>
-                </div>
-                {/* Busqueda de pokemones */}
-                <div className="busqueda">
-                    <form>
-                        <input 
-                        placeholder="Busca tu pokemon.."
-                        onChange={this.changeInput.bind(this)}
-                        />
-                        <button onClick={this.searchPoke.bind(this)}> 
-                            <FontAwesomeIcon icon={faSearch} />
+            <div className="search-wrap">
+                <div className="d-flex justify-content-around align-items-center">
+                    {/* Paginación */}
+                    <div className="paginas">
+                        <p>Pag 1 de 20</p>
+                        <button className="btn btn-primary pagina">
+                            <FontAwesomeIcon icon={faChevronCircleLeft} />
                         </button>
-                    </form>
-                    {this.state.status === 'success' &&
-                    <div className="">
+                        <span>  </span>
+                        <button className="btn btn-primary pagina">
+                            <FontAwesomeIcon icon={faChevronCircleRight}/>
+                        </button>
+                    </div>
+                    {/* Busqueda de pokemones */}
+                    <div className="busqueda">
+                            <input 
+                            placeholder="Busca tu pokemon.."
+                            onChange={changeInput}
+                            />
+                            <button onClick={searchPoke}> 
+                                <FontAwesomeIcon icon={faSearch} />
+                            </button>
+                    </div>
+                </div>
+                <div className="card">
+                    {pokemon &&
+
+                    <div className="card-body">
+                        <div>
+                            <img
+                            src={pokemon.sprites.front_default}
+                            alt="Pokemon"
+                            className="img-fluid"
+                            width="200"
+                            />
+                        </div>
+                        <div>
+                            Nombre: {pokemon.name}
+                        </div>
+                        <div>
+                            Peso: {pokemon.weight} Kg
+                        </div>
                     </div>
                     }
                 </div>
             </div>
         );
-    }
 }
 
 export default Search;
