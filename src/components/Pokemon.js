@@ -40,7 +40,7 @@ const Pokemon = (props) => {
                             {
                                 pokemon.types.map((type, idt) => {
                                     return (
-                                        <li key={idt} className="nav-item me-3">
+                                        <li key={idt} className="nav-item me-3 text-capitalize">
                                             🧬{type.type.name}
                                         </li>
                                     )
@@ -53,7 +53,7 @@ const Pokemon = (props) => {
                             {
                                 pokemon.abilities.map((ability, ida) => {
                                     return (
-                                        <li key={ida} className="nav-item me-1">
+                                        <li key={ida} className="nav-item me-1 text-capitalize">
                                             🛡{ability.ability.name}
                                         </li>
                                     )
