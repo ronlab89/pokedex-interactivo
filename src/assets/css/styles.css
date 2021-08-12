@@ -27,9 +27,13 @@ nav ul {
 .pagina {
   font-size: 15px !important;
 }
+.busqueda .btn:focus {
+  border: 1px solid transparent !important;
+}
+
 .poke-card {
   width: auto;
-  height: 300px;
+  height: 360px;
   background-color: #212529 !important;
   color: white;
   box-shadow: 6px 6px 12px 0px rgba(0,0,0,0.3);

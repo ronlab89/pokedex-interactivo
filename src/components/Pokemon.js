@@ -23,7 +23,7 @@ const Pokemon = (props) => {
                 {/* Body card */}
                 <div className="card-body">
                     <div>
-                        <h2>{pokemon.name}</h2>
+                        <h2 className="text-capitalize">{pokemon.name}</h2>
                     </div>
                     <div>
                         <p>
@@ -36,26 +36,30 @@ const Pokemon = (props) => {
                 <div className="card-footer row g-0">
                     <div className="col-6 d-flex flex-column">
                         <div className="d-flex flex-row justify-content-start">
+                            <ul className="nav mb-3">
                             {
                                 pokemon.types.map((type, idt) => {
                                     return (
-                                        <p key={idt} className="me-3">
-                                            {type.type.name}
-                                        </p>
-                                    )
-                                    })
-                            }
-                        </div>
-                        <div className="d-flex flex-row justify-content-start">
-                            {
-                                pokemon.abilities.map((ability, ida) => {
-                                    return (
-                                    <p key={ida} className="me-5">
-                                        {ability.ability.name}
-                                    </p>
+                                        <li key={idt} className="nav-item me-3">
+                                            🧬{type.type.name}
+                                        </li>
                                     )
                                 })
                             }
+                            </ul>
+                        </div>
+                        <div className="d-flex justify-content-start">
+                            <ul className="nav">
+                            {
+                                pokemon.abilities.map((ability, ida) => {
+                                    return (
+                                        <li key={ida} className="nav-item me-1">
+                                            🛡{ability.ability.name}
+                                        </li>
+                                    )
+                                })
+                            }
+                            </ul>
                         </div>
                     </div>
                     <div className="col-6 d-flex flex-column">

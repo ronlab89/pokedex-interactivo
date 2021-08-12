@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+// import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import Pokemon from './Pokemon';
 import Global from '../Api';
 import axios from 'axios';
 const {useState} = React;
@@ -57,55 +58,9 @@ const Search = () => {
                 </div>
                 {pokemon &&
                     <section className="wrap-card h-50 container d-flex justify-content-center align-items-center">
-                    <div className="card poke-card px-2">
-                        {/* Imagen */}
-                        <div className="card-img-top">
-                            <img
-                                src={pokemon.sprites.front_default}
-                                alt="Pokemon"
-                                className="img-fluid"
-                            />
-                        </div>
-                        {/* header */}
-                        {/* Body card */}
-                        <div className="card-body">
-                            <div>
-                                <h2>{pokemon.name}</h2>
-                            </div>
-                            <div>
-                                <p>
-                                    Peso: {pokemon.weight} Kg <br />
-                                    Altura: {pokemon.height} Cm
-                                </p>
-                            </div>
-                        </div>
-                        {/* Footer card */}
-                        <div className="card-footer row g-0">
-                            <div className="col-6 d-flex flex-column">
-                                <div className="d-flex justify-content-start">
-                                <p>
-                                    Tipo: {pokemon.types[0].type.name}
-                                </p>
-                                </div>
-                                <div className="d-flex justify-content-start">
-                                <p>
-                                    Poder: { pokemon.abilities[0].ability.name }
-                                </p>
-                                </div>
-                            </div>
-                            <div className="col-6 d-flex flex-column">
-                                <div className="d-flex justify-content-end">
-                                    <button className="btn">
-                                        <FontAwesomeIcon icon=
-                                        {faHeart} />
-                                    </button>
-                                </div>
-                                <div className="d-flex justify-content-end">
-                                    <p>ID: {pokemon.id}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <Pokemon pokemon={pokemon} />
+
                     </section>
                 }
             </div>
