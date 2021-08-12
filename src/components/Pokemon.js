@@ -5,6 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 const Pokemon = (props) => {
     
     const {pokemon} = props;
+    console.log('Objeto para la Card');
     console.log(pokemon);
 
     return(
@@ -26,23 +27,35 @@ const Pokemon = (props) => {
                     </div>
                     <div>
                         <p>
-                            Peso: {pokemon.weight} Kg <br />
-                            Altura: {pokemon.height} Cm
+                            Weight: {pokemon.weight} <br />
+                            Height: {pokemon.height}
                         </p>
                     </div>
                 </div>
                 {/* Footer card */}
                 <div className="card-footer row g-0">
                     <div className="col-6 d-flex flex-column">
-                        <div className="d-flex justify-content-start">
-                            <p>
-                                Tipo: {pokemon.types}
-                            </p>
+                        <div className="d-flex flex-row justify-content-start">
+                            {
+                                pokemon.types.map((type, idt) => {
+                                    return (
+                                        <p key={idt} className="me-3">
+                                            {type.type.name}
+                                        </p>
+                                    )
+                                    })
+                            }
                         </div>
-                        <div className="d-flex justify-content-start">
-                            <p>
-                                Poder: {pokemon.abilities}
-                            </p>
+                        <div className="d-flex flex-row justify-content-start">
+                            {
+                                pokemon.abilities.map((ability, ida) => {
+                                    return (
+                                    <p key={ida} className="me-5">
+                                        {ability.ability.name}
+                                    </p>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                     <div className="col-6 d-flex flex-column">
