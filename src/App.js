@@ -5,6 +5,7 @@ import axios from 'axios';
 import Global from './Api';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
+import Loading from './components/Loading';
 import Content from './components/Content';
 import Footer from './components/Footer';
 const {useState, useEffect} = React;
@@ -15,6 +16,9 @@ function App() {
 
   const [pokes, setPokes] = useState([]);
   const [pokemones, setPokemones] = useState([]);
+  // const [page, setPage] = useState();
+  // const [total, setTotal] = useState();
+  const [loading, setLoading] = useState(true);
 
   const getPokemons = () => {
     axios.get(urlAll + 'pokemon/?limit=20&offset=0')
@@ -41,6 +45,7 @@ function App() {
       })
       const getAllPokes = await Promise.all(links);
       setPokemones(getAllPokes)
+      setLoading(false);
     } catch (err) {
       return err
     }
@@ -56,7 +61,12 @@ function App() {
       <header className="App-header">
         <Navbar />
         <Search />
-        <Content pokemones={pokemones}/>
+        {loading ? (
+          <Loading />
+          ) : (
+            <Content pokemones={pokemones}/>
+          )
+        }
         <Footer />
       </header>
     </div>
