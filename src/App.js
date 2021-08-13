@@ -5,7 +5,6 @@ import axios from 'axios';
 import Global from './Api';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
-import Loading from './components/Loading';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Pagination from './components/Pagination';
@@ -22,7 +21,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const getPokemons = (limit = 20, offset = 25 * page) => {
+  const getPokemons = (limit = 20, offset = 20 * page) => {
     axios.get(urlAll + `pokemon/?limit=${limit}&offset=${offset}`)
       .then(res => {
         setAllPokes(res.data)
@@ -33,8 +32,8 @@ function App() {
       })
   }
 
-  console.log('1.- Funcion para traer todos los pokemones')
-  console.log(pokes)
+  // console.log('1.- Funcion para traer todos los pokemones')
+  // console.log(pokes)
 
   const fetchPokemons = async () => {
     try {
@@ -79,23 +78,17 @@ function App() {
         </header>
         <section>
         <Search />
-        <Pagination 
-          page={page + 1} 
-          totalPages={total}
+        <Pagination
+          page={page + 1}
+          setPage={setPage}
+          totalPages={total} 
           onLeftClick={lastPage}
           onRightClick={nextPage}
           />
-        {loading ? (
-          <Loading />
-          ) : (
-          <Content 
+          <Content
+            loading={loading} 
             pokemones={pokemones}
-            page={page}
-            setPage={setPage}
-            total={total}
           />
-          )
-        }
       </section>
       <Footer />
     </div>

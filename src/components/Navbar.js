@@ -14,7 +14,9 @@ class Navbar extends Component {
                             <img src={logoApi} alt="Logo PokeAPI" className="img-fluid logo-api" width="100" />
                         </li>
                         <li className="nav-item">
+                            <a href="/">
                             <img src={logo} alt="Pokebola" className="img-fluid" width="100"/>
+                            </a>
                         </li>
                         <li className="nav-item favoritos text-center me-5">
                             <a className="nav-link" href="favoritos.html">Ver Poke Favoritos</a>
