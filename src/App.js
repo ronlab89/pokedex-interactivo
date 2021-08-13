@@ -8,6 +8,7 @@ import Search from './components/Search';
 import Loading from './components/Loading';
 import Content from './components/Content';
 import Footer from './components/Footer';
+import Pagination from './components/Pagination';
 const {useState, useEffect} = React;
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Navbar />
+        <Pagination />
         <Search />
         {loading ? (
           <Loading />
