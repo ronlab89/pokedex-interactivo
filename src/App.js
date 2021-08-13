@@ -15,26 +15,30 @@ function App() {
   
   let urlAll = Global.url;
 
+  const [allPokes, setAllPokes] = useState([]);
   const [pokes, setPokes] = useState([]);
   const [pokemones, setPokemones] = useState([]);
-  // const [page, setPage] = useState();
-  // const [total, setTotal] = useState();
+  const [page, setPage] = useState();
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const getPokemons = () => {
     axios.get(urlAll + 'pokemon/?limit=20&offset=0')
       .then(res => {
+        setAllPokes(res.data)
         return setPokes(res.data.results)
       })
       .catch(error => {
-        return error;
+        return error; 
       })
   }
+
   console.log('1.- Funcion para traer todos los pokemones')
   console.log(pokes)
 
   const fetchPokemons = async () => {
     try {
+      setLoading(true);
       const links = pokes.map(async (pokemon) => {
         try {
           const res = await axios.get(pokemon.url);
@@ -47,30 +51,53 @@ function App() {
       const getAllPokes = await Promise.all(links);
       setPokemones(getAllPokes)
       setLoading(false);
+      setTotal(Math.ceil(allPokes.count / 20));
     } catch (err) {
       return err
     }
   }
 
+  const lastPage = () => {
+    const nextPage = Math.max(page - 1, 0); 
+    setPage(nextPage);
+  }
+
+  const nextPage = () => {
+    const nextPage = Math.min(page + 1, total);
+    setPage(nextPage);
+  }
+
   useEffect(() => {
       getPokemons();
       fetchPokemons();
-  }, []);
+  }, [page]);
 
   return (
     <div className="App">
       <header className="App-header">
         <Navbar />
+        </header>
+        <section>
         <Search />
-        <Pagination />
+        <Pagination 
+          page={page + 1} 
+          totalPages={total}
+          onLeftClick={lastPage}
+          onRightClick={nextPage}
+          />
         {loading ? (
           <Loading />
           ) : (
-            <Content pokemones={pokemones}/>
+            <Content 
+            pokemones={pokemones}
+            page={page}
+            setPage={setPage}
+            total={total}
+            />
           )
         }
-        <Footer />
-      </header>
+      </section>
+      <Footer />
     </div>
   );
 }
