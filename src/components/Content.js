@@ -13,7 +13,7 @@ const Content = (props) => {
 
     return (
         
-        <div className="h-100 container-fluid row">
+        <div className="vh-100 container-fluid row">
             <h1 className="text-center">Pokedex</h1>
             
             {pokemones.map((pokemon, id) => {

@@ -29,24 +29,29 @@ const Search = () => {
     }
 
         return (
-            <div className="search-wrap">
-                <div className="d-flex justify-content-end align-items-center">
-                    {/* Busqueda de pokemones */}
-                    <div className="busqueda">
-                            <input 
-                            placeholder="Busca tu pokemon.."
-                            onChange={changeInput}
-                            />
-                            <button className="btn" onClick={searchPoke}> 
-                                <FontAwesomeIcon icon={faSearch} />
-                            </button>
+            <div className="search-wrap p-5 row">
+                    <div className="d-flex justify-content-center align-items-center">
+                        {/* Busqueda de pokemones */}
+                        <div className="busqueda">
+                            <div className="input-group flex-nowrap">
+                                <form className="form-floating">
+                                    <input
+                                    className="form-control" 
+                                    placeholder="Busca tu pokemon.."
+                                    onChange={changeInput}
+                                    id="floatingInput"
+                                    />
+                                    <label htmlFor="floatingInput">Busca tu pokemon..</label>
+                                </form>
+                                <button className="btn btn-search" onClick={searchPoke}> 
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 {pokemon &&
-                    <section className="wrap-card h-50 container d-flex justify-content-center align-items-center">
-                    
-                    <Pokemon pokemon={pokemon} />
-
+                    <section className="wrap-card h-50 d-flex justify-content-center align-items-center p-5 me-5 mt-4">
+                        <Pokemon pokemon={pokemon} />
                     </section>
                 }
             </div>

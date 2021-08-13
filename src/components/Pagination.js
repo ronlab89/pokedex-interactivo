@@ -1,20 +1,30 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
-import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import pokeLeft from '../assets/images/pokeLeft.png';
+import pokeRight from '../assets/images/pokeRight.png';
 
 const Pagination = (props) => {
     return (
-        <div>
-            <div className="d-flex justify-content-around align-items-center">
-                <p>Pag 1 de 20</p>
-                <button className="btn btn-primary pagina">
-                    <FontAwesomeIcon icon={faChevronCircleLeft} />
-                </button>
-                <span>  </span>
-                <button className="btn btn-primary pagina">
-                    <FontAwesomeIcon icon={faChevronCircleRight} />
-                </button>
+        <div className="pagination-wrap p-5">
+            <div className="d-flex justify-content-center align-items-center">
+                <ul className="pagination">
+                    <li className="page-item">
+                        <a className="page-link" href="page.js">
+                            <img src={pokeLeft} alt="poke-left" width="30" className="img-fluid"/>
+                        </a>
+                    </li>
+                    <li className="page-item">
+                        <a href="page.js" className="page-link">1</a>
+                    </li>
+                    <li className="page-item">
+                        <a href="page.js" className="page-link">2</a>
+                    </li>
+                    <li className="page-item">
+                        <a href="page.js" className="page-link">3</a>
+                    </li>
+                <a className="page-link" href="page.js">
+                    <img src={pokeRight} alt="poke-right" width="30" className="img-fluid"/>
+                </a>
+                </ul>
             </div>
         </div>
     );

@@ -61,8 +61,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Navbar />
-        <Pagination />
         <Search />
+        <Pagination />
         {loading ? (
           <Loading />
           ) : (
