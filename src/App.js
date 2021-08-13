@@ -18,12 +18,12 @@ function App() {
   const [allPokes, setAllPokes] = useState([]);
   const [pokes, setPokes] = useState([]);
   const [pokemones, setPokemones] = useState([]);
-  const [page, setPage] = useState();
+  const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const getPokemons = () => {
-    axios.get(urlAll + 'pokemon/?limit=20&offset=0')
+  const getPokemons = (limit = 20, offset = 25 * page) => {
+    axios.get(urlAll + `pokemon/?limit=${limit}&offset=${offset}`)
       .then(res => {
         setAllPokes(res.data)
         return setPokes(res.data.results)
@@ -88,12 +88,12 @@ function App() {
         {loading ? (
           <Loading />
           ) : (
-            <Content 
+          <Content 
             pokemones={pokemones}
             page={page}
             setPage={setPage}
             total={total}
-            />
+          />
           )
         }
       </section>
