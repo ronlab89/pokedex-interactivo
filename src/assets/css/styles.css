@@ -1,3 +1,7 @@
+:root {
+  --red-color: rgba(218, 18, 58, 0.9);
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -8,9 +12,6 @@ body {
   width: 100%;
   height: 120px;
   background-color: white;
-}
-nav {
-  position: fixed;
 }
 nav ul {
   width: 100%;
@@ -24,6 +25,18 @@ nav ul {
 }
 .favoritos span {
   color: red;
+}
+
+/* Modal */
+.modal-header,
+.modal-footer {
+  min-height: 50px;
+  background-color: var(--red-color);
+  color: white;
+}
+.modal-body {
+  min-height: 500px;
+  padding: 30px !important;
 }
 
 /* Search */
@@ -70,18 +83,20 @@ nav ul {
   box-shadow: 6px 6px 12px 0px rgba(0,0,0,0.3);
   text-align: center;  
 }
-.poke-card .card-header,
 .poke-card .card-footer {
   padding: 0px 10px 0px 10px;
   margin: 0px -9px 0px -9px;
-  background-color: tomato;
+  min-height: 140px !important;
+  background-color: var(--red-color);
   color: white;
   font-weight: 700;
   font-size: 16px;
 }
 
-.card-footer {
-  min-height: 140px !important;
+/* Botones */
+.btn-check:focus+.btn, .btn:focus,
+.btn-close:focus {
+    box-shadow: none !important;
 }
 
 /* Footer */

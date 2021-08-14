@@ -1,6 +1,7 @@
 import React from 'react';
 import './assets/css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import axios from 'axios';
 import Global from './Api';
 import Navbar from './components/Navbar';
@@ -65,7 +66,12 @@ function App() {
     setPage(nextPage);
   }
 
+  useEffect( () => {
+    console.log('Local Storage');
+  }, [])
+
   useEffect(() => {
+    console.log('All Pokemons');
       getPokemons();
       fetchPokemons();
   }, [page]);
@@ -90,7 +96,7 @@ function App() {
       <header className="App-header">
         <Navbar />
         </header>
-        <section>
+        <section className="">
         <Search />
         <Pagination
           page={page + 1}
