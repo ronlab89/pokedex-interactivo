@@ -27,7 +27,7 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item favoritos text-center me-5">
                             {/* Favorites Modal */}
-                            <button type="button" className="btn nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button id="fav" type="button" className="btn nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Ver Poke Favoritos
                             </button>
                             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

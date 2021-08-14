@@ -38,6 +38,13 @@ nav ul {
   min-height: 500px;
   padding: 30px !important;
 }
+#fav {
+  color: white !important;
+  transition: all .1s ease;
+}
+#fav:hover {
+  color: crimson !important;
+}
 
 /* Search */
 .pagina {

@@ -12,6 +12,8 @@ import Pagination from './components/Pagination';
 import { FavoriteProvider } from './contexts/favoriteContext';
 const {useState, useEffect} = React;
 
+const localStorageKey = "favorite_pokemon";
+
 function App() {
   
   let urlAll = Global.url;
@@ -24,7 +26,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
 
-  const getPokemons = (limit = 20, offset = 20 * page) => {
+  const getPokemons = (limit = 20, offset = 0) => {
     axios.get(urlAll + `pokemon/?limit=${limit}&offset=${offset}`)
       .then(res => {
         setAllPokes(res.data)
@@ -66,13 +68,20 @@ function App() {
     setPage(nextPage);
   }
 
+  const loadFavoritePokemon = () => {
+    const pokemon = JSON.parse(window.localStorage.getItem(localStorageKey)) || [];
+    setFavorites(pokemon);
+  }
+
   useEffect( () => {
-    console.log('Local Storage');
+    loadFavoritePokemon();
   }, [])
 
   useEffect(() => {
-    console.log('All Pokemons');
-      getPokemons();
+    getPokemons();
+  })
+
+  useEffect(() => {
       fetchPokemons();
   }, [page]);
 
@@ -85,6 +94,7 @@ function App() {
       update.push(name);
     }
     setFavorites(update);
+    window.localStorage.setItem(localStorageKey, JSON.stringify(update));
   }
 
   return (
