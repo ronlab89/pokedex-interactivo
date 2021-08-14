@@ -8,9 +8,6 @@ const Content = (props) => {
 
     const {pokemones, loading} = props;
 
-    console.log('Recibiendo props del App component');
-    console.log(pokemones);
-
     return (
         <div>
 

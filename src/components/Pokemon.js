@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import FavoriteContext from '../contexts/favoriteContext';
+
 
 const Pokemon = (props) => {
-    
+
     const {pokemon} = props;
-    console.log('Objeto para la Card');
-    console.log(pokemon);
+    const {favoritePokemons, updateFavoritePokemon} = useContext(FavoriteContext);
+
+    const blackHeart = <FontAwesomeIcon icon={faHeart} />;
+    const redHeart = '❤';
+    const heart = favoritePokemons.includes(pokemon.name) ? redHeart : blackHeart;
+
+    const clickHeart = (e) => {
+        e.preventDefault();
+        updateFavoritePokemon(pokemon.name);
+    }
 
     return(
 
@@ -64,9 +74,8 @@ const Pokemon = (props) => {
                     </div>
                     <div className="col-6 d-flex flex-column">
                         <div className="d-flex justify-content-end">
-                            <button className="btn">
-                                <FontAwesomeIcon icon=
-                                    {faHeart} />
+                            <button onClick={clickHeart} className="btn">
+                                {heart}
                             </button>
                         </div>
                         <div className="d-flex justify-content-end">

@@ -1,11 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 import logo from '../assets/images/pokelogo.png';
 import logoApi from '../assets/images/pokeapi.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import FavoriteContext from '../contexts/favoriteContext';
 
-class Navbar extends Component {
-    render(){
+const {useContext} = React;
+
+const Navbar = () => {
+
+    const { favoritePokemons } = useContext(FavoriteContext);
+    console.log(favoritePokemons);
+    
         return (
             <div className="wrap-nav d-flex flex-column">
                 <nav className="navbar navbar-expand bg-dark navbar-dark">
@@ -21,7 +27,7 @@ class Navbar extends Component {
                         <li className="nav-item favoritos text-center me-5">
                             <a className="nav-link" href="favoritos.js">Ver Poke Favoritos</a>
                             <div className="d-flex justify-content-center align-content-center">
-                            <p className="lead"># <span>{}100</span> Poke</p>
+                            <p className="lead"># <span>{favoritePokemons.length}</span> Poke</p>
                             <span className="px-2 pt-1">
                                 <FontAwesomeIcon icon={faHeart} />
                             </span>
@@ -30,8 +36,7 @@ class Navbar extends Component {
                     </ul>
                 </nav>
         </div>
-        );
-    }
+        )
 }
 
 export default Navbar;

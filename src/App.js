@@ -8,6 +8,7 @@ import Search from './components/Search';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Pagination from './components/Pagination';
+import { FavoriteProvider } from './contexts/favoriteContext';
 const {useState, useEffect} = React;
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [favorite, setFavorite] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   const getPokemons = (limit = 20, offset = 20 * page) => {
     axios.get(urlAll + `pokemon/?limit=${limit}&offset=${offset}`)
@@ -33,9 +34,6 @@ function App() {
       })
   }
 
-  // console.log('1.- Funcion para traer todos los pokemones')
-  // console.log(pokes)
-
   const fetchPokemons = async () => {
     try {
       setLoading(true);
@@ -46,7 +44,7 @@ function App() {
         }
         catch (err) {
           return err;
-        } //url de cada pokemon
+        }
       })
       const getAllPokes = await Promise.all(links);
       setPokemones(getAllPokes)
@@ -72,7 +70,22 @@ function App() {
       fetchPokemons();
   }, [page]);
 
+  const updateFavoritePokemon = (name) => {
+    const update = [...favorites]
+    const isFavorite = favorites.indexOf(name);
+    if(isFavorite >= 0) {
+      update.splice(isFavorite, 1); 
+    }else {
+      update.push(name);
+    }
+    setFavorites(update);
+  }
+
   return (
+   <FavoriteProvider value={{
+     favoritePokemons: favorites,
+     updateFavoritePokemon: updateFavoritePokemon
+   }}>
     <div className="App">
       <header className="App-header">
         <Navbar />
@@ -89,10 +102,11 @@ function App() {
           <Content
             loading={loading} 
             pokemones={pokemones}
-          />
+            />
       </section>
       <Footer />
     </div>
+   </FavoriteProvider> 
   );
 }
 

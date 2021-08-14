@@ -9,6 +9,9 @@ body {
   height: 120px;
   background-color: white;
 }
+nav {
+  position: fixed;
+}
 nav ul {
   width: 100%;
 }
