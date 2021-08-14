@@ -20,6 +20,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [favorite, setFavorite] = useState([]);
 
   const getPokemons = (limit = 20, offset = 20 * page) => {
     axios.get(urlAll + `pokemon/?limit=${limit}&offset=${offset}`)
