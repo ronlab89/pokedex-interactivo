@@ -19,12 +19,13 @@ class Navbar extends Component {
                             </a>
                         </li>
                         <li className="nav-item favoritos text-center me-5">
-                            <a className="nav-link" href="favoritos.html">Ver Poke Favoritos</a>
-                            <p className="lead"># Poke
-                            <span> 
+                            <a className="nav-link" href="favoritos.js">Ver Poke Favoritos</a>
+                            <div className="d-flex justify-content-center align-content-center">
+                            <p className="lead"># <span>{}100</span> Poke</p>
+                            <span className="px-2 pt-1">
                                 <FontAwesomeIcon icon={faHeart} />
                             </span>
-                            </p>
+                            </div>
                         </li>
                     </ul>
                 </nav>

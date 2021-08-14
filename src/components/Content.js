@@ -18,7 +18,7 @@ const Content = (props) => {
                 <Loading />
                 :
                 <div className="container-fluid row content-pokedex">
-                <h1 className="text-center">Pokedex</h1>
+                <h1 className="text-center pb-5">Pokedex</h1>
                 
                 {pokemones.map((pokemon, id) => {
                     return(
