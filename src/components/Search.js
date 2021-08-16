@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Pokemon from './Pokemon';
 import {searchPokemon} from '../Api';
-import axios from 'axios';
 const {useState} = React;
 
 const Search = () => {

@@ -2,8 +2,7 @@ import React from 'react';
 import './assets/css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import axios from 'axios';
-import { getPokemons } from './Api';
+import { getPokemons, getPokemonData } from './Api';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import Content from './components/Content';
@@ -39,17 +38,9 @@ function App() {
     try {
       setLoading(true);
       const data = await getPokemons(20, 20 * page);
-      console.log(`Data ${data}`);
       const links = data.results.map(async (pokemon) => {
-        try {
-          const res = await axios.get(pokemon.url);
-          return res.data;
-        }
-        catch (err) {
-          return err;
-        }
+        return await getPokemonData(pokemon.url)
       })
-      console.log(`LINKS: ${links}`)
       const getAllPokes = await Promise.all(links);
       setPokemones(getAllPokes)
       setLoading(false);
@@ -76,7 +67,6 @@ function App() {
 
   useEffect(() => {
     loadFavoritePokemon();
-    console.log('FAvorito una sola vez');
   }, [])
 
   useEffect(() => {

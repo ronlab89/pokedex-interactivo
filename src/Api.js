@@ -23,7 +23,7 @@ export const getPokemons = async (limit = 20, offset = 0) => {
         return data;
     }catch(error) {
             return error;
-        }
+    }
 };
 
 export const getPokemonData = async (url) => {
