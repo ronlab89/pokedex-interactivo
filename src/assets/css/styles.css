@@ -45,8 +45,15 @@ nav ul {
 #fav:hover {
   color: crimson !important;
 }
+.message-fav {
+  height: 400px;
+}
 
 /* Search */
+#Search::-webkit-search-cancel-button{
+    position:relative !important;
+    right:20px !important;    
+}
 .pagina {
   font-size: 15px !important;
 }
@@ -104,6 +111,11 @@ nav ul {
 .btn-check:focus+.btn, .btn:focus,
 .btn-close:focus {
     box-shadow: none !important;
+}
+
+/* Input */
+.form-control:focus {
+  box-shadow: none !important;
 }
 
 /* Footer */

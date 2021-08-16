@@ -39,7 +39,13 @@ const Navbar = () => {
                                         </div>
                                         <div className="modal-body">
                                             <ul className="nav row">
-                                            {
+                                            {favoritePokemons.length < 1 ?
+                                                (
+                                                    <div className="d-flex justify-content-center align-items-center message-fav">
+                                                        <h2 className="d-block">Aun no tienes pokemones favoritos</h2>
+                                                    </div>
+                                                )
+                                                : (
                                                 favoritePokemons.map((fav, id) => {
                                                 return (
                                                     <li key={id} className="nav-item me-3 mb-3 text-capitalize fw-bold col-2 d-flex p-3">
@@ -49,7 +55,7 @@ const Navbar = () => {
                                                     </li>
                                                 )
                                                 })
-                                            }
+                                            )}
                                             </ul>
                                         </div>
                                         <div className="modal-footer">

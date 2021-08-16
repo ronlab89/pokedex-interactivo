@@ -1,24 +1,23 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import Pokemon from './Pokemon';
-import {searchPokemon} from '../Api';
 const {useState} = React;
 
-const Search = () => {
-    
+const Search = (props) => {
+
+    const { onSearch } = props;    
     const [search, setSearch] = useState('');
-    const [pokemon, setPokemon] = useState();
 
     const changeInput = (event) => {
         setSearch(event.target.value);
-    }
+        if (event.target.value.length === 0) {
+            onSearch(null);
+        }
+    };
 
-    const searchPoke = async (e) => {
-        e.preventDefault();
-        const data = await searchPokemon(search);
-        setPokemon(data);
-    }
+    const onClick = async (e) => {
+        onSearch(search);
+    };
 
         return (
             <div className="search-wrap p-5 row">
@@ -28,24 +27,20 @@ const Search = () => {
                             <div className="input-group flex-nowrap">
                                 <form className="form-floating">
                                     <input
-                                    className="form-control" 
+                                    type="search"
+                                    className="form-control Search" 
                                     placeholder="Busca tu pokemon.."
                                     onChange={changeInput}
-                                    id="floatingInput"
+                                    id="floatingInput Search"
                                     />
                                     <label htmlFor="floatingInput">Busca tu pokemon..</label>
                                 </form>
-                                <button className="btn btn-search" onClick={searchPoke}> 
+                                <button className="btn btn-search" onClick={onClick}> 
                                     <FontAwesomeIcon icon={faSearch} />
                                 </button>
                             </div>
                         </div>
                     </div>
-                {pokemon &&
-                    <section className="wrap-card h-50 d-flex justify-content-center align-items-center p-5 me-5 mt-4">
-                        <Pokemon pokemon={pokemon} />
-                    </section>
-                }
             </div>
         );
 }
