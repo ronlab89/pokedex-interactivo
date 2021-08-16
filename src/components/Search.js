@@ -2,13 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Pokemon from './Pokemon';
-import Global from '../Api';
+import {searchPokemon} from '../Api';
 import axios from 'axios';
 const {useState} = React;
 
 const Search = () => {
-
-    let url = Global.url;
     
     const [search, setSearch] = useState('');
     const [pokemon, setPokemon] = useState();
@@ -17,15 +15,10 @@ const Search = () => {
         setSearch(event.target.value);
     }
 
-    const searchPoke = (e) => {
+    const searchPoke = async (e) => {
         e.preventDefault();
-        axios.get(url+'pokemon/'+search)
-             .then(res => {
-                setPokemon(res.data);
-             })
-             .catch(error => {
-                 console.log(error);
-             })
+        const data = await searchPokemon(search);
+        setPokemon(data);
     }
 
         return (

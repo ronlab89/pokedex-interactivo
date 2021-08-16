@@ -11,7 +11,7 @@ const {useContext} = React;
 const Navbar = () => {
 
     const { favoritePokemons } = useContext(FavoriteContext);
-    console.log(favoritePokemons);
+    // console.log(favoritePokemons);
     
         return (
             <div className="wrap-nav d-flex flex-column">
@@ -30,7 +30,7 @@ const Navbar = () => {
                             <button id="fav" type="button" className="btn nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Ver Poke Favoritos
                             </button>
-                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                                     <div className="modal-content">
                                         <div className="modal-header">

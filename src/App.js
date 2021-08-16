@@ -3,7 +3,7 @@ import './assets/css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import axios from 'axios';
-import Global from './Api';
+import { getPokemons } from './Api';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import Content from './components/Content';
@@ -15,32 +15,32 @@ const {useState, useEffect} = React;
 const localStorageKey = "favorite_pokemon";
 
 function App() {
-  
-  let urlAll = Global.url;
 
-  const [allPokes, setAllPokes] = useState([]);
-  const [pokes, setPokes] = useState([]);
+  // const [allPokes, setAllPokes] = useState([]);
+  // const [pokes, setPokes] = useState([]);
   const [pokemones, setPokemones] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
 
-  const getPokemons = (limit = 20, offset = 0) => {
-    axios.get(urlAll + `pokemon/?limit=${limit}&offset=${offset}`)
-      .then(res => {
-        setAllPokes(res.data)
-        return setPokes(res.data.results)
-      })
-      .catch(error => {
-        return error; 
-      })
-  }
+  // const getPokemons = (limit = 20, offset = 0) => {
+    // axios.get(urlAll + `pokemon/?limit=${limit}&offset=${offset}`)
+      // .then(res => {
+        // setAllPokes(res.data)
+        // return (res.data.results)
+      // })
+      // .catch(error => {
+        // return error; 
+      // })
+  // }
 
   const fetchPokemons = async () => {
     try {
       setLoading(true);
-      const links = pokes.map(async (pokemon) => {
+      const data = await getPokemons(20, 20 * page);
+      console.log(`Data ${data}`);
+      const links = data.results.map(async (pokemon) => {
         try {
           const res = await axios.get(pokemon.url);
           return res.data;
@@ -49,10 +49,11 @@ function App() {
           return err;
         }
       })
+      console.log(`LINKS: ${links}`)
       const getAllPokes = await Promise.all(links);
       setPokemones(getAllPokes)
       setLoading(false);
-      setTotal(Math.ceil(allPokes.count / 20));
+      setTotal(Math.ceil(data.count / 20));
     } catch (err) {
       return err
     }
@@ -69,17 +70,18 @@ function App() {
   }
 
   const loadFavoritePokemon = () => {
-    const pokemon = JSON.parse(window.localStorage.getItem(localStorageKey)) || [];
-    setFavorites(pokemon);
+    const pokeFav = JSON.parse(window.localStorage.getItem(localStorageKey)) || [];
+    setFavorites(pokeFav);
   }
 
-  useEffect( () => {
+  useEffect(() => {
     loadFavoritePokemon();
+    console.log('FAvorito una sola vez');
   }, [])
 
   useEffect(() => {
     getPokemons();
-  })
+  }, [])
 
   useEffect(() => {
       fetchPokemons();
@@ -110,7 +112,6 @@ function App() {
         <Search />
         <Pagination
           page={page + 1}
-          setPage={setPage}
           totalPages={total} 
           onLeftClick={lastPage}
           onRightClick={nextPage}

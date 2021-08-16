@@ -11,7 +11,7 @@ const Content = (props) => {
     return (
         <div>
 
-            {loading ?
+            {!loading ?
                 <Loading />
                 :
                 <div className="container-fluid row content-pokedex">
