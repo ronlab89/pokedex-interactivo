@@ -16,6 +16,7 @@ const Search = (props) => {
     };
 
     const onClick = async (e) => {
+        e.preventDefault();
         onSearch(search);
     };
 
