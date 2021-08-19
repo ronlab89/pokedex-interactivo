@@ -5,7 +5,7 @@ const {useState} = React;
 
 const Search = (props) => {
 
-    const { onSearch } = props;    
+    const { onSearch } = props;
     const [search, setSearch] = useState('');
 
     const changeInput = (event) => {

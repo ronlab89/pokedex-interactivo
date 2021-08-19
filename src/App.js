@@ -82,24 +82,18 @@ function App() {
   }
 
   const onSearch = async (pokemon) => {
-    if(!pokemon) {
-      return fetchPokemons();
-    }
     setLoading(true);
-    setNotFound(false);
-    setSearching(true);
     const result = await searchPokemon(pokemon);
+    console.log(!result);
+    console.log(result);
     if(!result) {
       setNotFound(true);
       setLoading(false);
       return;
     }else {
       setPokemones([result]);
-      setPage(0);
-      setTotal(1);
     }
     setLoading(false);
-    setSearching(false);
   };
 
   return (
@@ -108,9 +102,7 @@ function App() {
      updateFavoritePokemon: updateFavoritePokemon
    }}>
     <div className="App">
-      {/* <header className="App-header"> */}
         <Navbar />
-      {/* </header> */}
         <Search onSearch={onSearch}/>
         <Pagination
           page={page + 1}
@@ -119,7 +111,7 @@ function App() {
           onRightClick={nextPage}
           />
           {notFound ? (
-            <div class="alert alert-danger d-flex align-items-center justify-content-center" role="alert">
+            <div className="alert alert-danger d-flex align-items-center justify-content-center" role="alert">
                <h2>⚠ No se encontro el pokemon que buscas!</h2> 
             </div>
           ) : (
