@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import FavoriteContext from '../contexts/favoriteContext';
 
 
@@ -9,7 +7,7 @@ const Pokemon = (props) => {
     const {pokemon} = props;
     const {favoritePokemons, updateFavoritePokemon} = useContext(FavoriteContext);
 
-    const blackHeart = <FontAwesomeIcon icon={faHeart} />;
+    const blackHeart = '🖤';
     const redHeart = '❤';
     const heart = favoritePokemons.includes(pokemon.name) ? redHeart : blackHeart;
 
