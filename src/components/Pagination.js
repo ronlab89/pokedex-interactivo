@@ -16,11 +16,11 @@ const Pagination = (props) => {
                         </button>
                     </li>
                     <li className="page-item">
-                        <span className="page-link">{page} </span>
+                        <span className="page-link numPage">{page} </span>
                     </li>
-                    <li className="page-item"><span className="page-link">de</span></li>
+                    <li className="page-item"><span className="page-link numPage">de</span></li>
                     <li className="page-item"> 
-                        <span className="page-link"> {totalPages}</span>
+                        <span className="page-link numPage"> {totalPages}</span>
                     </li>
                 <button onClick={onRightClick} className="page-link">
                     <img src={pokeRight} alt="poke-right" width="30" className="img-fluid"/>
