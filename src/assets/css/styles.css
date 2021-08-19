@@ -80,6 +80,8 @@ nav ul {
 .wrap-card {
   width: 100%;
 }
+
+/* Pagination */
 .page-link {
   color: crimson !important;
   border: none !important;
@@ -89,6 +91,12 @@ nav ul {
  background-color: crimson !important;
  color: white !important;
 }
+.numPage:hover {
+  background-color: transparent !important;
+  color: crimson !important;
+}
+
+/* Cards Poke */
 .poke-card {
   width: auto;
   height: 360px;
