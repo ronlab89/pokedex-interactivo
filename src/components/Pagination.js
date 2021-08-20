@@ -7,7 +7,7 @@ const Pagination = (props) => {
     const {onLeftClick, onRightClick, page, totalPages} = props;
 
     return (
-        <div className="pagination-wrap p-5">
+        <div className="pagination-wrap pt-5 p-sm-5 mt-3 mt-sm-0">
             <div className="d-flex justify-content-center align-items-center">
                 <ul className="pagination">
                     <li className="page-item">

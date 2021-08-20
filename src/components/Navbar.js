@@ -11,18 +11,17 @@ const {useContext} = React;
 const Navbar = () => {
 
     const { favoritePokemons } = useContext(FavoriteContext);
-    // console.log(favoritePokemons);
     
         return (
             <div className="wrap-nav d-flex flex-column">
                 <nav className="navbar navbar-expand bg-dark navbar-dark">
-                    <ul className="navbar-nav d-flex justify-content-between align-items-center">
-                        <li className="nav-item ms-5">
+                    <ul className="navbar-nav d-flex flex-column flex-sm-row justify-content-between align-items-center">
+                        <li className="nav-item ms-5 d-none d-sm-block">
                             <img src={logoApi} alt="Logo PokeAPI" className="img-fluid logo-api" width="100" />
                         </li>
                         <li className="nav-item">
                             <a href="/">
-                            <img src={logo} alt="Pokebola" className="img-fluid" width="100"/>
+                            <img src={logo} alt="Pokebola" className="img-fluid logo" width="100"/>
                             </a>
                         </li>
                         <li className="nav-item favoritos text-center me-5">
@@ -48,7 +47,7 @@ const Navbar = () => {
                                                 : (
                                                 favoritePokemons.map((fav, id) => {
                                                 return (
-                                                    <li key={id} className="nav-item me-3 mb-3 text-capitalize fw-bold col-2 d-flex p-3">
+                                                    <li key={id} className="nav-item me-3 mb-3 text-capitalize fw-bold col-lg-2 col-sm-3 col-4 d-flex p-3">
                                                         <img src={pokeFav} alt="Poke favorito logo" width="20" className="img-fluid me-2" /> <span className="me-2 text-reset">
                                                             {fav}
                                                         </span>

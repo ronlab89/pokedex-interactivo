@@ -21,11 +21,10 @@ const Search = (props) => {
     };
 
         return (
-            <div className="search-wrap p-5 row">
+            <div className="search-wrap pt-5 mt-5 mt-sm-0 p-sm-5 row">
                     <div className="d-flex justify-content-center align-items-center">
-                        {/* Busqueda de pokemones */}
-                        <div className="busqueda">
-                            <div className="input-group flex-nowrap">
+                    <div className="busqueda">
+                            <div className="input-group input-group-lg flex-nowrap">
                                 <form className="form-floating">
                                     <input
                                     type="search"

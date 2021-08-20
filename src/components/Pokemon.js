@@ -18,7 +18,7 @@ const Pokemon = (props) => {
 
     return(
 
-        <div className="col-3 mb-5">
+        <div className="col-xl-3 col-md-4 col-sm-6 col-12 mb-5">
             <div className="card poke-card px-2">
                 {/* Imagen */}
                 <div className="card-img-top">

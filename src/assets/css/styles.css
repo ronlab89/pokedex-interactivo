@@ -52,7 +52,7 @@ nav ul {
 /* Search */
 #Search::-webkit-search-cancel-button{
     position:relative !important;
-    right:20px !important;    
+    right:20px !important;
 }
 .pagina {
   font-size: 15px !important;
@@ -122,8 +122,12 @@ nav ul {
 }
 
 /* Input */
+.form-control {
+  color: crimson !important;
+}
 .form-control:focus {
   box-shadow: none !important;
+  border-color: var(--red-color) !important;
 }
 
 /* Footer */
@@ -136,4 +140,32 @@ footer {
   background-color: #282c34;
   color: white;
   text-align: center;
+}
+
+@media(max-width: 768px) {
+  .form-control {
+    width: auto !important;
+  }
+  .modal-dialog {
+    max-width: 400px !important;
+  }
+}
+
+@media(max-width: 576px) {
+  .modal-dialog {
+    max-width: 300px !important;
+  }
+  .logo {
+    width: 70px;
+  }
+  .search-wrap, 
+  .pagination-wrap {
+    width: 100%;
+    height: 150px;
+  }
+  #alert {
+    font-size: 1.3rem;
+    text-align: center;
+    padding-right: 1rem;
+  }
 }

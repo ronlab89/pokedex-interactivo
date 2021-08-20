@@ -117,8 +117,8 @@ function App() {
           onRightClick={nextPage}
           />
           {notFound ? (
-            <div className="alert alert-danger d-flex align-items-center justify-content-center" role="alert">
-               <h2>⚠ No se encontro el pokemon que buscas!</h2> 
+            <div className="alert alert-danger d-flex align-items-center justify-content-center mt-5 mt-sm-0" role="alert">
+               <h2 id="alert">⚠ No se encontro el pokemon que buscas!</h2> 
             </div>
           ) : (
             <React.Fragment>
