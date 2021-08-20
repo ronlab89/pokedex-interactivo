@@ -107,7 +107,7 @@ function App() {
      favoritePokemons: favorites,
      updateFavoritePokemon: updateFavoritePokemon
    }}>
-    <div className="App">
+    <div className="">
         <Navbar />
         <Search onSearch={onSearch}/>
         <Pagination

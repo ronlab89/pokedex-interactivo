@@ -8,7 +8,7 @@ const Pokemon = (props) => {
     const {favoritePokemons, updateFavoritePokemon} = useContext(FavoriteContext);
 
     const blackHeart = '🖤';
-    const redHeart = '❤';
+    const redHeart = '❤️';
     const heart = favoritePokemons.includes(pokemon.name) ? redHeart : blackHeart;
 
     const clickHeart = (e) => {
